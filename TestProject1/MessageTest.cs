@@ -111,12 +111,12 @@ namespace TestProject1
         [TestCleanup]
         public void TestCleanup()
         {
-            Directory.Delete("../../../Data/message", true);
-            Directory.CreateDirectory("../../../Data/message");
-            Directory.Delete("../../../Data/users/patients", true);
-            Directory.CreateDirectory("../../../Data/users/patients");
-            Directory.Delete("../../../Data/users/doctors", true);
-            Directory.CreateDirectory("../../../Data/users/doctors");
+            Directory.Delete($"{Authorization.path}/message", true);
+            Directory.CreateDirectory($"{Authorization.path}/message");
+            Directory.Delete($"{Authorization.path}/users/patients", true);
+            Directory.CreateDirectory($"{Authorization.path}/users/patients");
+            Directory.Delete($"{Authorization.path}/users/doctors", true);
+            Directory.CreateDirectory($"{Authorization.path}/users/doctors");
         }
     }
 }

@@ -53,10 +53,10 @@ namespace TestProject1
         [TestMethod]
         public void CheckLoginAndPasswordTest_patient()
         {
-            Authorization.Registration("patient", "passwordPatient");
+            Authorization.Registration("patient2", "passwordPatient");
             Patient patient = Patient.ReadFromFileJSON(Authorization.LastId());
 
-            Patient patient1 = (Patient)Authorization.CheckLoginAndPassword("patient", "passwordPatient");
+            Patient patient1 = (Patient)Authorization.CheckLoginAndPassword("patient2", "passwordPatient");
 
             Assert.AreEqual(patient.Id, patient1.Id);
         }
@@ -64,10 +64,10 @@ namespace TestProject1
         [TestMethod]
         public void CheckLoginAndPasswordTest_doctor()
         {
-            Authorization.Registration("doctor", "passwordDoctor", "doctor");
+            Authorization.Registration("doctor1", "passwordDoctor", "doctor");
             Doctor doctor = Doctor.ReadFromFileJSON(Authorization.LastId());
 
-            Doctor doctor1 = (Doctor)Authorization.CheckLoginAndPassword("doctor", "passwordDoctor");
+            Doctor doctor1 = (Doctor)Authorization.CheckLoginAndPassword("doctor1", "passwordDoctor");
 
             Assert.AreEqual(doctor.Id, doctor1.Id);
         }
@@ -75,10 +75,10 @@ namespace TestProject1
         [TestMethod]
         public void CheckLoginAndPasswordTest_admin()
         {
-            Authorization.Registration("admin", "passwordAdmin", "admin");
+            Authorization.Registration("admin1", "passwordAdmin", "admin");
             Admin admin = Admin.ReadFromFileJSON(Authorization.LastId());
 
-            Admin admin1 = (Admin)Authorization.CheckLoginAndPassword("admin", "passwordAdmin");
+            Admin admin1 = (Admin)Authorization.CheckLoginAndPassword("admin1", "passwordAdmin");
 
             Assert.AreEqual(admin.Id, admin1.Id);
         }
@@ -86,7 +86,7 @@ namespace TestProject1
         [TestMethod]
         public void CheckLoginAndPasswordTest_null()
         {
-            Authorization.Registration("patient", "passwordPatient");
+            Authorization.Registration("patient7", "passwordPatient");
 
             Patient patient1 = (Patient)Authorization.CheckLoginAndPassword("patient5", "passwordPatient");
 
@@ -96,13 +96,13 @@ namespace TestProject1
         [TestCleanup]
         public void TestCleanup()
         {
-            File.WriteAllText("../../../Data/passwords.json", "");
-            Directory.Delete("../../../Data/users/patients", true);
-            Directory.CreateDirectory("../../../Data/users/patients");
-            Directory.Delete("../../../Data/users/doctors", true);
-            Directory.CreateDirectory("../../../Data/users/doctors");
-            Directory.Delete("../../../Data/users/admins", true);
-            Directory.CreateDirectory("../../../Data/users/admins");
+            File.WriteAllText($"{Authorization.path}/passwords.json", "");
+            Directory.Delete($"{Authorization.path}/users/patients", true);
+            Directory.CreateDirectory($"{Authorization.path}/users/patients");
+            Directory.Delete($"{Authorization.path}/users/doctors", true);
+            Directory.CreateDirectory($"{Authorization.path}/users/doctors");
+            Directory.Delete($"{Authorization.path}/users/admins", true);
+            Directory.CreateDirectory($"{Authorization.path}/users/admins");
         }
     }
 }

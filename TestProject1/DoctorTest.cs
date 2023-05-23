@@ -60,7 +60,7 @@ namespace TestProject1
             Doctor doctor = new Doctor(Authorization.LastId(), "Андрій", "Науменко", "Микитович", "Хірург");
             doctor.SaveToFileJSON();
 
-            Doctor doctor1 = Doctor.ReadFromFileJSON($"../../../Data/users/doctors/{Authorization.LastId()}.json");
+            Doctor doctor1 = Doctor.ReadFromFileJSON($"{Authorization.path}/users/doctors/{Authorization.LastId()}.json");
 
             Assert.AreEqual(doctor.ToString(), doctor1.ToString());
         }
@@ -68,9 +68,9 @@ namespace TestProject1
         [TestCleanup]
         public void TestCleanup()
         {
-            Directory.Delete("../../../Data/users/doctors", true);
-            Directory.CreateDirectory("../../../Data/users/doctors");
-            File.WriteAllText("../../../Data/passwords.json", "");
+            Directory.Delete($"{Authorization.path}/users/doctors", true);
+            Directory.CreateDirectory($"{Authorization.path}/users/doctors");
+            File.WriteAllText($"{Authorization.path}/passwords.json", "");
         }
     }
 }

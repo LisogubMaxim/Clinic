@@ -83,7 +83,7 @@ namespace TestProject1
             Meet meet = new Meet(DateTime.Now.AddDays(5), patient, doctor, "");
             meet.SaveToFileJSON();
 
-            Meet meet2 = Meet.ReadFromFileJSON($"../../../Data/meetings/{meet.Date.Day}.{meet.Date.Month}/{meet.Date.Hour}.{meet.Date.Minute}.json");
+            Meet meet2 = Meet.ReadFromFileJSON($"{Authorization.path}/meetings/{meet.Date.Day}.{meet.Date.Month}/{meet.Date.Hour}.{meet.Date.Minute}.json");
 
             Assert.AreEqual(meet.ToString(), meet2.ToString());
         }
@@ -91,12 +91,12 @@ namespace TestProject1
         [TestCleanup]
         public void TestCleanup()
         {
-            Directory.Delete("../../../Data/meetings", true);
-            Directory.CreateDirectory("../../../Data/meetings");
-            Directory.Delete("../../../Data/users/patients", true);
-            Directory.CreateDirectory("../../../Data/users/patients");
-            Directory.Delete("../../../Data/users/doctors", true);
-            Directory.CreateDirectory("../../../Data/users/doctors");
+            Directory.Delete($"{Authorization.path}/meetings", true);
+            Directory.CreateDirectory($"{Authorization.path}/meetings");
+            Directory.Delete($"{Authorization.path}/users/patients", true);
+            Directory.CreateDirectory($"{Authorization.path}/users/patients");
+            Directory.Delete($"{Authorization.path}/users/doctors", true);
+            Directory.CreateDirectory($"{Authorization.path}/users/doctors");
         }
     }
 }

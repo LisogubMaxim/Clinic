@@ -43,9 +43,9 @@ namespace TestProject1
         [TestCleanup]
         public void TestCleanup()
         {
-            Directory.Delete("../../../Data/users/admins", true);
-            Directory.CreateDirectory("../../../Data/users/admins");
-            File.WriteAllText("../../../Data/passwords.json", "");
+            Directory.Delete($"{Authorization.path}/users/admins", true);
+            Directory.CreateDirectory($"{Authorization.path}/users/admins");
+            File.WriteAllText($"{Authorization.path}/passwords.json", "");
         }
 
     }
